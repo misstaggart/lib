@@ -1,0 +1,11 @@
+(executable
+ (name list_lib)
+ (libraries base stdio core core_kernel)
+ )
+
+(include_subdirs unqualified)
+
+(env
+  (dev
+    (flags (:standard -warn-error -A))))
+
