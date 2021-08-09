@@ -1,1 +1,1 @@
-let (o) f g = fun x -> f (g x)
+let o f g = fun x -> f (g x)

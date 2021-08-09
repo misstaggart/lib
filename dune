@@ -1,5 +1,5 @@
 (executable
- (name list_lib)
+ (name fn)
  (libraries base stdio core core_kernel)
  )
 
