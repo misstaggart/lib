@@ -5,6 +5,8 @@ include Core_kernel
 
 let cons x l = x::l
 
+let cons_b x l = l @ [x]
+
 let rec repeat l n = if n = 0 then [] else l @ (repeat l (n-1))
 
 (* subset: int -> 'a list -> 'a list list
