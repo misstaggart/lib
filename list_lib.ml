@@ -28,3 +28,17 @@ let rec permute l = match l with
 
 let sublist ~compare:cmp ?dups:(n = 0) l = List.dedup_and_sort ~compare:(List.compare cmp) (List.concat (List.map (subset ~dups:n l) ~f:permute))
 
+
+(* : 'a list list -> 'a list -> 'a list list
+prod_list acc l1 is all possible ways to add one element of l1 to the back of one element of acc *)
+let rec prod_list acc l1 = let add_to_each_back = fun x -> fun acc -> List.map acc ~f:(fun l -> l @ [x]) in
+  match l1 with
+    [] -> []
+  | x::xs -> (add_to_each_back x acc) @ (prod_list acc xs)
+
+(*Pi_{0< i < |l|} l[i]
+: 'a list list -> 'a list list *)
+let iterated_prod l = match (List.tl l) with
+    None -> []
+  | Some tail -> List.fold tail ~init:(List.map (List.hd_exn l) ~f:(fun x -> [x]))
+                   ~f:(fun prod -> fun l' -> prod_list prod l')
